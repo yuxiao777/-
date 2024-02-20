@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网易云</title>
+    <style>
+        .box {
+            width:1226px;
+            height:1000px;
+        }
+        .left {
+            float: left;
+            width: 170px;
+            height:1000px;
+            background-color: #f5f5f5;
+        }
+        a {
+            text-align: none;
+            color: #333;
+            text-decoration: none;
+        }
+        ul li {
+            list-style: none;
+        }
+        i {
+            font-style: normal;
+        }
+        .item {
+            position: fixed;
+            left: 0;
+            top:0;
+            width: 160px;
+            padding: 10px;
+        } 
+
+        .right {
+            float: right;
+            height: 1000px;
+            width: 1056px;
+            background-color: rgb(247, 249, 252);
+            overflow: hidden;
+        }
+        .right input {
+            color: #6e6e6e;
+        }
+        .up>span {
+            margin-left: 55px;
+        }
+        .ding {
+            padding: 20px;
+        }      
+        .nav {                     /* 05轮播图的css */
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            display: flex;
+            text-align: center;     
+                
+        }
+        .nav label{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin: 0 3px;
+            position: relative;
+            border-color: aquamarine;
+            background-color: rgb(159, 157, 38);   
+                  
+        }
+        .bar {
+            width: 50px;
+            height: 10px;
+            border: 2px solid #fff;
+            margin:6px;
+            cursor:pointer;
+            transition: 0.4s; 
+           
+        }
+        input[name="r"]{
+            position: absolute;
+            visibility: hidden;      
+            background-position: 3px -343px;     
+        }
+        .turn {
+            width: 1000%;
+            height: 20%;
+            display: flex;
+        }
+        .slide {
+            width: 20%;
+            transition: 0.6s;
+        }
+        .slide img{     /* 更改轮播图的大小 */
+            width: 10%;
+            height: 85%;
+        }
+        #r1:checked~.s1{
+            margin-left: 0;
+        }
+        #r2:checked~.s1{
+            margin-left: -20%;
+        }
+        #r3:checked~.s1{
+            margin-left: -40%;
+        }
+        #r4:checked~.s1{
+            margin-left: -60%;
+        }
+        #r5:checked~.s1{
+            margin-left: -80%;
+        }
+        .tjian {
+            text-decoration: none;
+        }
+        .tuijian>div {
+            float: left;
+            width: 234px;
+            height: 300px;
+            margin-left: 14px;
+            margin-bottom: 14px;
+        }             /* 05 */
+        .commend {           /* 06推荐歌单是鼠标滑过文字上浮 */
+            margin: 5px;
+            padding: 0;
+            box-sizing: border-box;
+            display: inline-block;
+            justify-content: center;
+            align-items: center;
+            text-align: left;         
+        }
+        .card {
+            position: relative;              
+            align-items: flex-end;     
+            overflow: hidden;
+            width: 240px;
+            height: 265px;
+            display: inline-block;
+            margin: 5px;
+            text-align: left;       
+        }
+        .card::before {
+            content: "";
+            width: 100%;
+            height: 110%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-image: url(images/12.jpg);
+            background-size: cover;
+            background-position: 0 0;
+            transition: transform 1s cubic-bezier(0.19,1,1.22,1);
+        }
+        .card:nth-child(1)::before{
+            background-image: url(images/12.jpg);
+        }
+        .card:nth-child(2)::before{
+            background-image: url(images/13.jpg);
+        }
+        .card:nth-child(3)::before{
+            background-image: url(images/16.jpg);
+        }
+        .card:nth-child(4)::before{
+            background-image: url(images/11.jpg);
+        }
+        .card::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 200%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform: translateY(0);
+            transition: transform 1.4s cubic-bezier(0.19,1,1.22,1);
+        }
+        .card .content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index:1;
+            padding: 16px 8px;
+            transform: translateY(60%);
+            transition: transform 0.7s cubic-bezier(0.19,1,1.22,1);
+            color: rgb(255, 183, 183);
+        }
+        .card h2 {
+            font-weight:bold ;
+            color: rgb(255, 183, 183);
+        }
+        .card span {
+            letter-spacing: 2px;
+            width: 80%;
+            line-height: 30px;
+            margin-top: 25px;
+            text-align: justify;
+            color: rgb(255, 183, 183);
+        }
+        .card button {
+            cursor: pointer;
+            border: none;
+            background-color: #6e6e6e;
+            color: #f5f5f5;
+            padding: 12px 24px;
+            margin-top: 25px;          
+        }
+        .card .contentc *:not(h2){
+            opacity: 0;
+            transform: translateY(20px);
+            transition: transform 0,7s cubic-bezier(0.19,1,1.22,1),opcity 0.7s;
+            cubic-bezier (0.19,1,1.22,1);
+        }
+        .card:hover::before{
+            transform: translateY(-5%);
+        }
+        .card:hover::after{
+            transform: translateY(-50%);
+        }
+        .card:hover .content{
+            transform: translateY(0);
+        }
+        .card:hover .content *:not(h2){
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.1s;
+        }           /* 06 */
+        footer {   /* 09底部 */
+            min-width: 992px;
+            height: 80px;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 80px;
+        }
+        .footer_list {
+            background-color: #0b0a0a;
+            height: 80px;
+            justify-content: center;
+            align-items: center;
+            min-width: 992px;
+            display: flex;
+            color: #ffffff;
+            font-size: 25px;
+        }
+        .footer-btn a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .up li {
+            line-height: 40px;
+        }
+        .up li a {
+            display: block;
+            
+            font-size: 16px;
+        }
+        .up li a:hover {
+            background-color: #ec4242;
+            color: #fff;
+        }
+
+    </style>
+</head>
+
+
+
+<body>
+    <div class="box">             <!-- 01 侧边栏 -->
+        <div class="left">
+            <div class="item">
+                <img src="images/logo.png" alt="" width="180px">
+                        <ul class="up">
+                            <li>
+                                <a href="#">
+                                <span>为我推荐</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                <span>云音乐精选</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                <span>博客</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                <span>私人漫游</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                <span>社区</span>
+                                </a>
+                            </li>
+                            _____________
+                        </ul>
+                        
+                 
+
+                   
+                        <ul class="up">
+                            <li>
+                                <a href="#">
+                                    <span>我喜欢的音乐</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>最近播放</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>我的博客</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>我的收藏</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>下载管理</span>
+                               </a>
+                            </li>
+                            _____________
+                        </ul>
+                
+
+                   
+                        <ul class="up">
+                            <li>
+                                <a href="#">
+                                <span>我创建的歌单</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                <span>我收藏的歌单</span>
+                                </a>
+                            </li>                           
+                        </ul>
+                   
+
+                
+            </div>
+        </div><!-- 01 -->
+
+        <div class="right">
+            <div class="up">   <!-- 03顶部搜索框和头像名称 -->
+                <span><input type="text" value='大家都在搜 上春山'></span>
+                <span><img src="images/name.png" width="30px">blue_</span>
+                <span class="ding"><img src="images/dingbu.png" width="300px" ></span>
+            </div><!-- 03 -->
+
+            <div class="turn" width="500px">   <!-- 04轮播图 -->
+                <input type="radio" name="r" id="r1" checked>
+                <input type="radio" name="r" id="r2" >
+                <input type="radio" name="r" id="r3" >
+                <input type="radio" name="r" id="r4" >
+                <input type="radio" name="r" id="r5" >
+                <div class="slide">                  
+                    <img src="images/01.jpg" alt="" width="100px">
+                </div>
+                <div class="slide s1">
+                    <img src="images/02.jpg" alt="" width="100px">
+                </div>
+                <div class="slide">
+                    <img src="images/03.jpg" alt="" width="100px">
+                </div>
+                <div class="slide">
+                    <img src="images/04.jpg" alt="" width="100px">
+                </div>
+                <div class="slide">
+                    <img src="images/05.jpg" alt="" width="100px">
+                </div>
+                <div class="nav">
+                    <label for="r1" class="bar"></label>
+                    <label for="r2" class="bar"></label>
+                    <label for="r3" class="bar"></label>
+                    <label for="r4" class="bar"></label>
+                    <label for="r5" class="bar"></label>
+                </div>
+            </div><!-- 04 -->
+             
+            <div class="commend">          <!-- 07推荐歌单，鼠标滑过文字上浮 -->
+                <h1>推荐歌单></h1>
+                <div class="card">
+                    <div class="content">
+                        <h2>日语集锦</h2>
+                        <span>1.樱花樱花想见你<br>2.lemon<br>3.反语</span>
+                        <button>查看</button>
+                        
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="content">
+                       <h2>【古风经典】</h2>
+                        <span>1.松烟入墨<br>2.不老梦<br>3.琴师</span>
+                        <button>查看</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="content">
+                        <h2>欧美五大</h2>
+                        <span>1.poker face<br>2.love in the dark<br>3.E.T</span>
+                        <button>查看</button> 
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="content">
+                        <h2>忘川风华录</h2>
+                        <span>1.易水诀<br>2.多情岸<br>3.心上秋</span>
+                        <button>查看</button>
+                    </div>
+                </div>
+            </div><!-- 07 -->
+
+           
+            
+        </div> 
+        
+        <footer> <!-- 08底部音乐播放器 -->
+            <div class="footer">
+                <div class="footer_list">
+                    <div class="footer-btn">
+                        <a href="#" class="last">上一首</a>
+                        <a href="#" class="start">播放</a>
+                        <a href="#" class="stop">暂停</a>
+                        <a href="#" class="next">下一首</a>
+                        <input class="volume" type="range" max="1" min="0" step="0.1">
+                    </div>
+                    <div class="footer-music">
+                        <audio controls class="audio" src ="musics\银临 - 不老梦.flac";></audio>
+                    </div>
+                    <div class="musicname">不老梦</div>
+                </div>
+            </div>
+            
+        </footer>
+
+
+
+
+        <script> 
+            var text=document.querySelector('input');/* 02搜索框中文字的显示与隐藏 */
+            text.onfocus=function(){
+                if(this.value==='大家都在搜 上春山'){
+                    this.value=' ';
+                }
+                
+            }
+            text.onblur = function () {
+                if(this.value===' '){
+                this.value = '大家都在搜 上春山';
+                }
+            }/* 02 */
+
+             var musicList = [
+            "musics/西瓜JUN - 狂野想乡.flac",
+            "musics/银临 - 不老梦.flac",
+            "musics/西瓜JUN - 长生诀.flac"
+            ]
+            var titleList = ["狂野想乡","不老梦","长生诀"]
+            var num=1;
+            document.querySelector(".musicname").innerHTML=titleList[num]; 
+            function fn(name){
+                return document.querySelector(name);   /* 为了播放音乐时旁边出现乐曲名 */
+            }
+            fn(".audio").src = musicList[num];      /* 09播放暂停键等的作用实现 */
+            fn(".musicname").innerHTML = titleList[num];
+          
+            var audio= fn(".audio");/* 播放 */
+            fn(".start").onclick=function(){
+                if(audio.pause){
+                    audio.play();
+                }              
+            }
+            fn(".stop").onclick=function(){/* 暂停 */
+                if(audio.play){
+                    audio.pause();
+                }              
+            }           
+            fn(".last").onclick=function(){/* 上一首 */
+                num--;
+                if(num<0){
+                    num=musicList.length-1;
+                }
+                fn(".audio").src = musicList[num];      
+                fn(".musicname").innerHTML = titleList[num];
+            }
+            fn(".next").onclick=function(){/* 下一首 */
+                num++;
+                if(num>musicList.length-1){
+                    num=0;
+                }
+                fn(".audio").src = musicList[num];      
+                fn(".musicname").innerHTML = titleList[num];
+            }
+            var volume = fn(".volume");/* 调节音量大小 */
+            volume.onchange=function(){
+                audio.volume=volume.value;
+            }/* 09 */
+             
+            
+           
+        </script>   
+    </div> 
+</body>
+</html>
