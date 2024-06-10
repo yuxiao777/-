@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人页面</title>
+    <link rel="stylesheet" href="name.css">
+    <script type="text/javascript" src="name.js"></script>
+   <!--  - 个人页面（主页、动态等，侧边栏头像进入）的全部界面及功能的「大体」架构（「大体」的定义可自行定夺），不含下文的Unnecessary部分
+    - 个人信息编辑页面(信息编辑) -->
+</head>
+<body>
+    <div class="name_up">
+        <img src="images/wyybg.jpg" alt="" width="300px" height="155">
+    </div>
+    <div class="name_mid">
+        <button>信息编辑</button>
+    </div>
+
+    <img src="images/17.jpg" alt="" width="70px" height="70px" class="name_photo">
+
+    <div class="tab">
+        <div class="tab_list">
+            <ul>
+                <li class="current">主页</li>
+                <li>动态</li>
+                <li>视频</li>
+                <li>博客</li>
+            </ul>
+        </div>
+        <div class="tab_con">
+            <div class="item" style="display: block;">
+                <div class="zhuye">
+                    <div class="kouwei">
+                        <h2>音乐口味</h2>
+                        <div class="kou_1">
+                            <font size="1px" color="gray">我的喜欢</font><br>
+                            <font size="4px">203首</font><br><br>
+                            <font size="1px" color="gray">喜欢的音乐</font>
+                        </div>
+                        <div class="kou_2">
+                            <font size="1px" color="gray">累计听歌</font><br>
+                            <font size="4px">5590首</font><br><br>
+                            <font size="1px" color="gray">听歌排行</font>
+                        </div>
+                        <div class="kou_3">
+                            <font size="1px" color="gray">本周关键词</font><br>
+                            <font size="4px">每一首歌都心动</font><br><br>
+                            <font size="1px" color="gray">黑胶时光机</font>
+                        </div>
+                    </div>
+                    <div class="gedan">
+                        <h4>创建的歌单</h4>
+                        <div class="gedan_1">
+                            <img src="images/01.jpg" alt="" width="80px" class="gedan_photo">
+                            <font size="5px" class="gedan_font">我的十年精选专辑</font>
+                        </div>
+                        <div class="gedan_2">
+                            <img src="images/02.jpg" alt="" width="80px" class="gedan_photo">
+                            <font size="5px">我的2022年度歌单</font>
+                        </div>
+                        <div class="gedan_3">
+                            <img src="images/03.jpg" alt="" width="80px" class="gedan_photo">
+                            <font size="5px">我喜欢听的</font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+               
+                <img src="images/07.jpg" alt="" width="120px" class="s2">
+                <p>这首歌真好听</p>
+            </div>
+            <div class="item">
+                3 <img src="images/08.jpg" alt="" width="200px">
+            </div>
+            <div class="item">
+                4 <img src="images/09.jpg" alt="" width="200px">
+            </div>
+        </div>
+
+       
+    </div>
+    <script>
+        var tab_list = document.querySelector('.tab_list');
+        var lis = tab_list.querySelectorAll('li');
+        var items = document.querySelectorAll('.item');
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].setAttribute('index', i);
+            lis[i].onclick = function () {
+                for (var i = 0; i < lis.length; i++) {
+                    lis[i].className = ' ';
+                }
+                this.className = 'current';
+                var index = this.getAttribute('index');
+                console.log(index);
+                for (var i = 0; i < items.length; i++) {
+                    items[i].style.display = 'none';
+                }
+                items[index].style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

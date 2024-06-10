@@ -1,0 +1,102 @@
+.name_up {
+    position: absolute;
+}
+.name_mid {
+    background-color: aliceblue;
+    position: absolute;
+    z-index: 1;
+    width: 280px;
+    height: 160px;
+    transform: translate(10px,120px);
+    border-radius: 15px;
+}
+.name_photo {
+    position: absolute;
+    z-index: 2;
+    transform: translate(115px,100px);
+    border-radius: 50%;
+}
+button {
+    transform: translate(105px, 110px);
+}
+.tab {
+    position: absolute;
+    background-color: rgb(233, 216, 233);
+    width: 300px;
+    height: 1300px;
+    margin: 300px auto;
+}
+li {
+    list-style-type: none;
+}
+
+.tab_list {
+    height: 39px;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+.tab_list li {
+    float: left;
+    height: 39px;
+    line-height: 39px;
+    padding: 0 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.tab_list .current {
+    background-color: #c81623;
+    color: #fff;
+}
+
+.item_info {
+    padding: 20px 0 0 20px;
+}
+
+.item {
+    display: none;
+}
+.s2 {
+    transform: translate(20px,20px);
+}
+.kouwei{
+    background-color: #dfdada;
+    height: 220px;
+    width:290px ;
+    margin-top: 30px;
+    border-radius: 15px;
+    transform: translate(5px);
+}
+.kou_1,.kou_2,.kou_3 {
+    float: left;
+    height: 120px;
+    width: 90px;
+    z-index: 1;
+    border-radius: 15px;
+    margin-left: 6px;
+}
+.kou_1 {
+    background-color: #f6dae4;
+}
+.kou_2 {
+    background-color: #f4f2cc;
+}
+.kou_3 {
+    background-color: #cdbef4;
+}
+.gedan_1,.gedan_2,.gedan_3{
+    background: #dc6f6f;
+    height: 100px;
+    margin-top: 10px;
+    width: 290px;
+    border-radius: 15px;
+    transform: translate(5px);
+}
+.gedan_photo {
+    transform: translate(5px,5px);
+    border-radius: 10%;
+}
+.gedan_font {
+    transform: translate(-10px);
+}

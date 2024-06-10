@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网易云移动端</title>
+    <link rel="stylesheet" href="wyy.css">
+    <script type="text/javascript" src="wyy.js"></script>
+    <!-- - 
+     侧边栏
+        - 单指从左到右划动触发滑出侧边栏，包含滑出动画
+        - 单指从右到左划动触发滑入侧边栏，包含滑入动画
+        - 点击右侧阴影遮罩层阴影遮罩层触发划入侧边栏，包含滑入动画
+        - 侧边栏中头部的「个人页面」跳转按钮
+    - 个人页面（主页、动态等，侧边栏头像进入）的全部界面及功能的「大体」架构（「大体」的定义可自行定夺），不含下文的Unnecessary部分
+    - 个人信息编辑页面(信息编辑)
+    - 歌单页面（从个人页歌单列表进入），展示主要内容，适当添加交互
+    - 登录页面（逻辑优先） -->
+</head>
+<body>
+    <div class="shouye">
+        <div class="bott">
+        <button id="go">侧边栏</button>
+        <input type="text" value="大家都在搜索">
+        <button id="dl">登录</button>
+        <h4>猜你喜欢></h4>
+        <img src="images/01.jpg" alt="" width="90px">
+        <img src="images/02.jpg" alt="" width="90px">
+        <img src="images/03.jpg" alt="" width="90px"><br>
+        <h4>每日推荐></h4>
+        <img src="images/04.jpg" alt="" width="90px">
+        <img src="images/05.jpg" alt="" width="90px">
+        <img src="images/06.jpg" alt="" width="90px"><br>
+
+        </div>
+        
+        <!-- 侧边栏 --> 
+        <div id="ce">
+             <div class="shouye">
+            <div class="ce_name">
+                <img src="images/17.jpg" id="name" alt="" width="50px">
+                <a href="https://music.163.com/" target="_blank">言之></a>
+                <button id="back">返回</button>
+            </div>
+            <div class="vip">
+                <h3>续费黑胶vip</h3>
+                <p>重启会员成员之路></p>
+                <p>云音乐X哔哩哔哩!购会员送3个月!</p>
+            </div>
+            <div class="ce_up">
+                <ul>
+                    <li>我的消息</li>
+                    <li>云贝中心</li>
+                    <li>创作者中心</li>
+                </ul>
+                <ul>
+                    <li>趣测</li>
+                    <li>云村有票</li>
+                    <li>多多西西口袋</li>
+                    <li>商场</li>
+                    <li>Beat专区</li>
+                    <li>口袋彩铃</li>
+                    <li>游戏专区</li>
+                </ul>
+                <ul>
+                    <li>设置</li>
+                    <li>深色模式</li>
+                    <li>定时关闭</li>
+                    <li>个性装扮</li>
+                    <li>边听边存</li>
+                    <li>在线听歌免流量</li>
+                </ul>
+            </div>
+        </span>
+    </div>
+    
+    <script>
+        var ce = document.querySelector('#ce');
+        var go = document.querySelector('#go');
+        var back = document.querySelector('#back');
+
+        function animate(obj, target) {
+                // 先清除以前的定时器，只保留当前的一个定时器执行
+                clearInterval(obj.timer);
+                obj.timer = setInterval(function () {
+                    // 步长值写到定时器的里面
+                    var step = (target - obj.offsetLeft) / 1000;
+                    if (obj.offsetLeft == target) {
+                        // 停止动画 本质是停止定时器
+                        clearInterval(obj.timer);
+                    }
+                    // 把每次加1 这个步长值改为一个慢慢变小的值  步长公式：(目标值 - 现在的位置) / 10
+                    obj.style.left = obj.offsetLeft + step + 'px';
+
+                }, 1);
+            }
+            go.addEventListener('touchstart', function () {
+                // 调用函数
+                animate(ce, 500);
+            })
+
+
+        function animate2(obj, target) {
+                // 先清除以前的定时器，只保留当前的一个定时器执行
+                clearInterval(obj.timer);
+                obj.timer = setInterval(function () {
+                    // 步长值写到定时器的里面
+                    var step = (target - obj.offsetLeft) / 800;
+                    if (obj.offsetLeft == target) {
+                        // 停止动画 本质是停止定时器
+                        clearInterval(obj.timer);
+                    }
+                    // 把每次加1 这个步长值改为一个慢慢变小的值  步长公式：(目标值 - 现在的位置) / 10
+                    obj.style.left = obj.offsetLeft - step + 'px';
+
+                }, 1);
+            }
+            back.addEventListener('touchstart', function () {
+                // 调用函数
+                animate2(ce, 500);
+            })
+    </script>  
+</body>
+</html>

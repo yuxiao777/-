@@ -1,0 +1,56 @@
+.up {
+    height: 300px;
+    width: 100%;
+    background-color: rgb(136, 241, 255);
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.mid {
+    z-index: 1;
+    position: absolute;
+}
+.photo {
+    transform: translate(0,40px);
+    border-radius: 20%;
+}
+.font {
+    float: right;
+    margin-left: 10px;
+    transform: translate(0,90px);
+}
+.name_photo {
+    position: absolute;
+    z-index: 1;
+    transform: translate(0, -90px);
+    border-radius: 50%;
+}
+.btn {
+    z-index: 1;
+    position: absolute;
+    text-align: center;
+    font-size: 25px;
+    color: #ffffff;
+}
+.btn_1,.btn_2,.btn_3 {
+    float: left;
+    margin: 5px;
+    background-color: rgb(189, 195, 24);
+    transform: translate(3px, 250px);
+    width: 90px;
+    height: 40px;
+    border-radius: 20px;
+}
+.bofang {
+    background-color: rgb(246, 227, 227);
+    height: 600px;
+    width: 100%;
+    position: absolute;
+    transform: translate(0, 300px);
+    border-radius: 20px;
+}
+.song_1,.song_2,.song_3 {
+    height: 70px;
+    font-size: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}

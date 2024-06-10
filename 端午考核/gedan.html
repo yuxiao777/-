@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歌单</title>
+    <link rel="stylesheet" href="gedan.css">
+    <script src="gedan.js"></script>
+</head>
+<body>
+    <div class="up">
+        <div class="back"><font size="6px"><-&nbsp;歌单</font></div> 
+        <div class="mid">
+            <img src="images/05.jpg" alt="" width="120px" class="photo">
+            <div class="font">
+                <font sise="7px" color="white">@凌寒彪的十年精选特专辑</font><br>
+                <font sise="2px" color="gray">凌寒彪></font>
+            </div>
+        </div>
+    </div>
+    <div class="btn">
+        <div class="btn_1">分享</div>
+        <div class="btn_1">评论</div>
+        <div class="btn_1">收藏</div>
+    </div>
+    <div class="bofang">
+        <h3>播放全部</h3>
+        <hr size="1px" color="gray">
+        <div class="song_1">长生诀</div>
+        <button onclick="playAudio()" type="button">播放</button>
+        <button onclick="pauseAudio()" type="button">暂停</button>
+        <hr size="1px" color="gray">
+        <div class="song_2">不老梦</div>
+        <button onclick="playAudio()" type="button">播放</button>
+        <button onclick="pauseAudio()" type="button">暂停</button>
+        <hr size="1px" color="gray">
+        <div class="song_3">狂野想乡</div>
+        <button onclick="playAudio()" type="button">播放</button>
+        <button onclick="pauseAudio()" type="button">暂停</button>
+        <hr size="1px" color="gray">
+        <audio id="myAudio">
+            <source src="musics/西瓜JUN - 长生诀.flac" type="audio/ogg">
+            <source src="musics/银临 - 不老梦.flac" type="audio/ogg">
+            <source src="musics/西瓜JUN - 狂野想乡.flac" type="audio/ogg">
+           
+        </audio>
+    </div>
+    <script>
+        var b1=document.querySelector("b1");
+        var b2=document.querySelector("b2");
+        var b3=document.querySelector("b3");
+        b1.onclick=play1();
+        b2.onclick=play2();
+        b3.onclick=play3();
+        function play1() {
+                document.getElementById("audio1").play();
+            }
+            function play2() {
+                document.getElementById("audio2").play();
+            }
+            function play3() {
+                document.getElementById("audio3").play();
+            }
+    </script>
+</body>
+</html>

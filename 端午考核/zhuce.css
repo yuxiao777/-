@@ -1,0 +1,18 @@
+*{
+    background-image: 
+            url("images/wyybg.jpg");
+}
+.logo {
+    transform: translate(125px, 50px);
+    border-radius: 50%;
+}
+form {
+    transform: translate(65px, 100px);
+}
+input{
+    margin-top: 10px;
+}
+button {
+    text-align: center;
+    transform: translate(25px, 50px);
+}
