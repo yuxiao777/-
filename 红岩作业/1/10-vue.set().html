@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>学校信息</h1>
+        <h2>学校名称:{{name}}</h2>
+        <hr>
+        <h1>学生信息</h1>
+        <button @click="add">点我添加性别</button>
+        <h2>姓名:{{student.name}}</h2>
+        <h2>年龄:{{student.age}}</h2> 
+        <h2 v-if="student.sex"><!-- 巧妙,太妙了!,用v-if来绑定"性别"这两个字是否出现 -->性别:{{student.sex}}</h2> <!-- 因为有studen这个对象,所以不会报错,但是又因为student里面没有sex这个属性,随意是undefined,直接不显示在这个页面上 -->
+        <h2>科目:
+            <ul>
+                <li v-for="(o,index) in student.objects" :key="index"><!-- 遍历数组,真的很妙,这里直接就是(o,index)这里就相当于设置了一个叫o的形参,然后in student.objects就表明在student.objects数组里面遍历 -->
+                    {{index}}--{{o.title}}--{{o.score}}
+                </li>
+            </ul>
+        </h2>
+
+    <script>
+        const m=new Vue({
+            el:'#root',
+            data:{
+                name:'尚硅谷',
+                student:{
+                    name:'小明',
+                    age:"19",
+                    objects:[
+                        {title:'chinese',score:115},
+                        {title:'math',score:136}
+                    ]
+                }
+            },
+            methods:{
+                add(){
+                    Vue.set(this.student,'sex','女')//Vue.set(@1,@2,@3),@1是你要给谁添加属性{methods中this默认就是指vm},@2是你要添加什么属性,@3是你添加的属性值是什么
+                    /* Vue.set() 的局限性:只能给data里面的某个对象(eg."Student")添加属性,如果我们要给学校信息里面加一行时,就不行了,除非把name:'小明',
+                    age:"19"也添加在一个对象中 */
+                    /* this.$set(this.student, 'sex', '女') *///这两种写法意义是一样的
+                }
+            }
+        })
+
+
+    </script>
+
+
+    </div>
+</body>
+</html>

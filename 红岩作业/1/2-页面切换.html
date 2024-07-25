@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="changePart()">按钮</button>
+    <p class="pp"></p>
+
+    <script>
+        function changePart() {
+            location.hash = "change";
+        }
+        window.addEventListener("hashchange", myFunction);
+        const pp=document.querySelector(".pp");
+        function myFunction() {
+            pp.innerHTML="页面已切换";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="root">
+        姓: <input type="text" v-model="fname"><!-- v-model将表单里面填的值与fname绑定 --><br><br>
+        名: <input type="text" v-model="sname"><br><br>
+        全名(插值语法实现):{{fname.slice(0,3)}}-{{sname}}<br><br><!-- .slice(0,3)表示我只接受3个数据,且从第0个开始接受 //'张'是第0个 -->
+        全名(method实现):<span>{{mname()}}</span><br><br><!-- 注意这里不是事件的调用,不是指令,是插值,所以得加() -->
+        全名(计算属性实现):<span>{{cname}}</span><!-- 注意这里不是事件的调用,不是指令,是插值,所以得加() -->
+    </div> 
+
+    <script>
+        const vm=new Vue({
+            el:'#root',
+            data:{
+                fname:"暗算",
+                sname:"蛋"
+            },
+            methods:{
+                mname(){
+                    return '潜行蛋'+'-'+this.fname+this.sname
+                }
+            },
+            computed:{
+                cname:{
+                    //get作用:1.当有人读取cname时,get就会被调用,且返回值就作为cname的值
+                    //get的调用时机:1.初次读取cname时2.所依赖的数据发生变化时(比如说本例中的fname和sname)
+                    get(){
+                        console.log("getgetgetgetgetgtegtegte")
+                        return '心机蛋'+'-'+this.fname+this.sname
+                    }
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

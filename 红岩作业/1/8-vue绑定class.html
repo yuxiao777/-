@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .basic{
+            width: 400px;
+            height: 100px;
+            border: 1px solid black;
+            font-size: 80px;
+           text-align: center;
+        }
+        
+        .happy{
+            border: 4px solid red;;
+            background-color: rgba(255, 255, 0, 0.644);
+            background: linear-gradient(30deg,yellow,pink,orange,yellow);
+        }
+        .sad{
+            border: 4px dashed rgb(2, 197, 2);
+            background-color: gray;
+        }
+        .normal{
+            background-color: skyblue;
+        }
+
+        .a1{
+            background-color: yellowgreen;
+        }
+        .a2{
+            text-shadow:2px 2px 10px red;
+        }
+        .a3{
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <!-- 第一种适用于多个class属性只能选择一种 -->
+        <div class="basic" :class="mood" @click="change">{{enen}}</div><br><br><!-- class="basic" :class="mood"表示basic这个属性是一定有的,然后我们还有有一个属性,但是那个属性不知道是三个中的哪一个,所以我们用mood与齐绑定 -->
+        <!-- 第二种适用于多个class属性我们不知道用多少个,也不知道用哪几个 -->
+        <div class="basic" :class="classarr">小仔</div><br><br>
+        
+        <div class="basic" :class="classobj" >小羊</div><br><br>
+
+    </div>
+
+    <script>
+        new Vue({
+            el:'#root',
+            data:{
+                enen:'小蛋仔',
+                mood:'normal',
+                classarr:['a1','a2','a3'],
+                classobj:{
+                    a1:false,
+                    a2:false
+                }
+            },
+            methods:{
+                change(){
+                    const arr=['normal','sad','happy']
+                    const arr2=['小蛋仔','失心熊','仔仔熊']//哈哈,关于为什么前端怎么让人着迷
+                    const index=Math.floor(Math.random() * 3)//哈哈搞笑,这个Math还必须大写
+                    console.log(arr[index])
+                    this.mood=arr[index]
+                    this.enen=arr2[index]
+                }
+            }
+        })
+    </script>
+</body>
+</html>

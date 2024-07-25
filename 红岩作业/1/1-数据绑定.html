@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>111{{name}}</h1><!-- {{}}就只是分割符 -->
+        <a v-bind:href="u">1232</a><!-- v-bind是将u弄成了一个表达式,与href相绑定//v-bind:可简写为: -->
+    </div>
+    <script type="text/javascript">
+        const x=new Vue({
+            el:'#root',//el用于制定当前Vue实例为哪个容器服务,值通常为css选择字符串
+           /*  data:{//data中用于存储数据,数据只供el所制定的容器去使用
+                name:'222',
+                u:"http://baidu.com"
+            } */
+           data:function(){
+            return{
+                name:"222",
+                u:"http://baidu.com"
+            }
+           }
+        })
+        console.log(x)
+    </script>
+
+
+    <div id="put">
+        <input type="text" :value="name1"><br>
+        <input type="text" :value="name1"><br>
+        <input type="text" v-model:value="name2"><br>
+        <input type="text" v-model:value="name2">
+    </div>
+    
+    <script>
+        const n = new Vue({
+            el: "#put",
+            data: {
+                name1: 'nn',
+                name2:"hehe"
+            }
+        })
+    </script>
+
+</body>
+
+</html>

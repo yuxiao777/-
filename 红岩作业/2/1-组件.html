@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue.js"></script>
+</head>
+<body> 
+       <div id="root">
+            <!-- 第三步：编写组件标签 -->
+            <helloll></helloll>
+            <hr>
+            <school></school>
+            <hr>
+            <student></student>  
+       </div>  
+
+       <div id="root2">
+            <helloll></helloll>
+       </div>
+
+       <script>
+        //第一步：创建school组件
+            //用Vue.extend({})创建组件
+        const schoolll/* schoolll就是一个中间变量,你谁便取名字 */ = Vue.extend({
+            template: `
+                <div class="demo">
+                    <h2>学校名称：{{schoolName}}</h2>
+                    <h2>学校地址：{{address}}</h2>
+                    <button @click="showName">点我提示学校名</button>	
+                </div>
+            `,//我们组件里面的html代码写在template:``中,里面的html代码你就正常写就行了
+
+            // el:'#root', //组件定义时，一定不要写el配置项，因为最终所有的组件都要被一个vm管理，由vm决定服务于哪个容器,此刻你也不晓得它的el(要服务的对象是谁)
+            data() {
+                return {
+                    schoolName: '尚硅谷',
+                    address: '北京昌平'
+                }
+            },//现在我们要写该组件里面的数据了,注意!:组件里面的data要用data(){ return {xx:'xx'}}
+
+            methods: {
+                showName() {
+                    alert(this.schoolName)
+                }
+            },//因为此组件中的html代码中有button需要一个showName,那我们就在这里写一个methods:里面写一个函数
+        })
+
+        const student = Vue.extend({
+            template:`
+                <div class="demo2">
+                    <h1>学生姓名:{{name}}</h1>
+                    <h1>学生年龄:{{age}}</h1>
+                </div>
+            `,
+            data(){
+                return{
+                    name:'小隐',
+                    age:19
+                }
+            }
+        })
+
+        const hello = Vue.extend({
+            template:`
+                <h1>{{what}}</h1>
+            `,
+            data(){
+                return {
+                    what:'hello'
+                }
+            }
+        })
+
+        //第二步：全局注册组件Vue.component('组件名',组件)
+        Vue.component('helloll', hello)//真的很搞笑,如果你要使用全局注册组件,一定要把Vue.component()写在创建vm前面
+
+        //第二步：注册组件（局部注册）
+            //需要先创建一个vm,然后按照正常的绑定就行了,如果在原代码中(即上面那个<div id="root">中)有{{name}}什么的话,也是正常加一个data:{}来写
+        new Vue({
+            el:'#root',
+            //局部注册用关键字components:{}
+            components:{
+                school: schoolll,/* school才是我们组件的名字 */
+                student/* 因为组件名和中间变量名一样,所以我们就直接简写 */
+            }
+        })
+
+        new Vue({
+            el:'#root2'
+        })
+
+       </script>
+</body>
+</html>
